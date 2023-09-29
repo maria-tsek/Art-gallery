@@ -10,10 +10,10 @@ export default function ArtPieces({ pieces }) {
           return (
             <li key={piece.slug}>
               <ArtPiecePreview
-                piece={piece}
-                // image={image}
-                // title={title}
-                // artist={artist}
+                // piece={piece}
+                imageSource={piece.imageSource}
+                name={piece.name}
+                artist={piece.artist}
               />
             </li>
           );
