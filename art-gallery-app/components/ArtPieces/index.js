@@ -1,4 +1,4 @@
-import ArtPiecePreview from "./ArtPiecePreview";
+import ArtPiecePreview from "../ArtPieceRreview";
 
 export default function ArtPieces({ pieces }) {
   return (
