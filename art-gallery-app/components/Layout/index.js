@@ -6,7 +6,8 @@ const LayoutWrapper = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: grey;
+  // background-color: grey;
+  background-color: #0ABAB5;
   color: white;
   padding: 25px;
   text-align: center;
@@ -20,7 +21,7 @@ const Main = styled.main`
 export default function Layout({ children }) {
   return (
     <LayoutWrapper>
-      <Header>Gallery</Header>
+      <Header>Art Gallery</Header>
       <Main>{children}</Main>
       <Navigation />
     </LayoutWrapper>

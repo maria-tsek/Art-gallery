@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
 const ArtPieceWrapper = styled.div`
   border: 1px solid;
@@ -35,17 +36,21 @@ const Artist = styled.p`
   margin-top: 8px;
 `;
 
-export default function ArtPiecePreview({ imageSource, name, artist }) {
+export default function ArtPiecePreview({ imageSource, name, artist, slug }) {
+  console.log("slug:", slug);
   return (
     <ArtPieceWrapper>
+      <Link href={`/art-pieces/${slug}`}>
       <ArtImage
         src={imageSource}
         alt={`image of ${name}`}
         width={243}
         height={192}
+
       />
       <Title>{name}</Title>
       <Artist>{artist}</Artist>
+      </Link>
     </ArtPieceWrapper>
   );
 }

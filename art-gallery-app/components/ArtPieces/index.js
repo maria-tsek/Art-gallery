@@ -17,6 +17,7 @@ export default function ArtPieces({ pieces }) {
           imageSource={piece.imageSource}
           name={piece.name}
           artist={piece.artist}
+          slug={piece.slug}
         />
       ))}
     </ArtPiecesWrapper>
