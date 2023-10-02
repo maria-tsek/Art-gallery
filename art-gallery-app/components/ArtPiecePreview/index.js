@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 const ArtPieceWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border: 1px solid;
-  padding: 16px;
+  padding: 20px;
   text-align: center;
+  width: 350px;
   transition: transform 0.3s ease;
 
   &:hover {
@@ -15,9 +21,7 @@ const ArtPieceWrapper = styled.div`
 
 const ArtImage = styled(Image)`
   position: relative;
-  width: 243px;
-  height: 192px;
-  border-radius: 8px;
+  border: 2mm ridge #f2cd5c;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 
@@ -36,21 +40,33 @@ const Artist = styled.p`
   margin-top: 8px;
 `;
 
-export default function ArtPiecePreview({ imageSource, name, artist, slug }) {
+export default function ArtPiecePreview({
+  imageSource,
+  name,
+  artist,
+  slug,
+  artPiecesInfo,
+  onToggleFavorite,
+  imageDimensions,
+}) {
   console.log("slug:", slug);
   return (
     <ArtPieceWrapper>
-      <Link href={`/art-pieces/${slug}`}>
       <ArtImage
+        style={{ width: "80%", height: "auto" }}
+        width={imageDimensions.width}
+        height={imageDimensions.height}
         src={imageSource}
         alt={`image of ${name}`}
-        width={243}
-        height={192}
-
+        background
       />
       <Title>{name}</Title>
       <Artist>{artist}</Artist>
-      </Link>
+      <Link href={`/art-pieces/${slug}`}></Link>
+      <FavoriteButton
+        artPiecesInfo={artPiecesInfo}
+        onToggleFavorite={onToggleFavorite}
+      />
     </ArtPieceWrapper>
   );
 }

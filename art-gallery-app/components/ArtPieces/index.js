@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ArtPiecePreview from "../ArtPieceRreview";
+import ArtPiecePreview from "../ArtPiecePreview";
 
 const ArtPiecesWrapper = styled.div`
   display: flex;
@@ -18,6 +18,7 @@ export default function ArtPieces({ pieces }) {
           name={piece.name}
           artist={piece.artist}
           slug={piece.slug}
+          imageDimensions={piece.dimensions}
         />
       ))}
     </ArtPiecesWrapper>
