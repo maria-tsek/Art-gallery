@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
-import ArtPiecePreview from "../ArtPiecePreview";
+import ArtPiecePreview from "../ArtPiecePreview/ArtPiecePreview";
 
 const SpotlightWrapper = styled.div`
   background-color: white;

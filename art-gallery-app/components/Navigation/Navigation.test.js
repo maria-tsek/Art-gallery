@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Navigation from ".";
+import Navigation from "./Navigation";
 
 test("renders three navigation links labeled 'Spotlight', 'Art pieces' and 'Favorites'", () => {
   render(<Navigation />);

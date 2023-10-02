@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Navigation from "../Navigation";
+import Navigation from "../Navigation/Navigation";
 
 const LayoutWrapper = styled.div`
   font-family: Arial, sans-serif;
@@ -7,12 +7,11 @@ const LayoutWrapper = styled.div`
 
 const Header = styled.header`
   // background-color: grey;
-  background-color: #0ABAB5;
+  background-color: #0abab5;
   color: white;
   padding: 25px;
   text-align: center;
   font-size: 2rem;
-  
 `;
 
 const Main = styled.main`

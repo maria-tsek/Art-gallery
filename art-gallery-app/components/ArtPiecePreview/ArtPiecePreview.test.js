@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ArtPiecePreview from ".";
+import ArtPiecePreview from "./ArtPiecePreview";
 
 test("renders the art piece image", () => {
   render(<ArtPiecePreview imageSource="/testImage.jpg" name="testName" />);

@@ -45,26 +45,27 @@ export default function ArtPiecePreview({
   name,
   artist,
   slug,
-  artPiecesInfo,
+  isFavorite,
   onToggleFavorite,
   imageDimensions,
 }) {
-  console.log("slug:", slug);
   return (
     <ArtPieceWrapper>
       <ArtImage
         style={{ width: "80%", height: "auto" }}
-        width={imageDimensions.width}
-        height={imageDimensions.height}
+        // width={imageDimensions.width}
+        // height={imageDimensions.height}
+        width={240}
+        height={240}
         src={imageSource}
         alt={`image of ${name}`}
-        background
       />
       <Title>{name}</Title>
       <Artist>{artist}</Artist>
       <Link href={`/art-pieces/${slug}`}></Link>
       <FavoriteButton
-        artPiecesInfo={artPiecesInfo}
+        slug={slug}
+        isFavorite={isFavorite}
         onToggleFavorite={onToggleFavorite}
       />
     </ArtPieceWrapper>
