@@ -1,5 +1,5 @@
-import ArtPieces from "../components/ArtPieces";
-import Spotlight from "../components/Spotlight";
+import ArtPieces from "../components/ArtPieces/ArtPieces";
+import Spotlight from "../components/Spotlight/Spotlight";
 // import { useRouter } from "next/router";
 
 export default function SpotlightPage({ pieces }) {
@@ -7,15 +7,9 @@ export default function SpotlightPage({ pieces }) {
 
   const randomIndex = Math.floor(Math.random() * pieces.length);
   const randomPiece = pieces[randomIndex];
-  console.log("pieces: ", pieces);
-  console.log("randomIndex", randomIndex);
-
-  // router.push(`/${randomPieceSlug}`);
-  console.log("randomPiece", randomPiece);
 
   return (
     <>
-      
       <Spotlight pieces={pieces} randomPiece={randomPiece} />
     </>
   );

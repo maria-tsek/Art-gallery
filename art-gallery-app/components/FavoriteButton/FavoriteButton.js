@@ -1,13 +1,16 @@
+import { HeartIcon } from "@/assets/HeartIcon";
 import React from "react";
-// import Image from "next/image";
-import Heart from "../../assets/heart.svg"
+import styled from "styled-components";
 
-export default function FavoriteButton({ artPiecesInfo, onToggleFavorite }) {
+const StyledButton = styled.button`
+  background: white;
+  border: none;
+`;
+
+export default function FavoriteButton({ slug, isFavorite, onToggleFavorite }) {
   return (
-    <button artPiecesInfo={artPiecesInfo} onClick={onToggleFavorite}>
-        <Heart/>
-      {/* <Image src="../assets/heart.svg" alt="favorite button logo" width={24} height={24}/> */}
-      
-    </button>
+    <StyledButton onClick={() => onToggleFavorite(slug)}>
+      <HeartIcon fill={isFavorite ? "red" : "black"} />
+    </StyledButton>
   );
 }

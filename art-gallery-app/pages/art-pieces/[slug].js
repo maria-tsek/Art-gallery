@@ -1,4 +1,4 @@
-import ArtPieceDetails from "@/components/ArtPieceDetails";
+import ArtPieceDetails from "@/components/ArtPieceDetails/ArtPieceDetails";
 import { useRouter } from "next/router";
 
 export default function ArtPieceDetailsPage({ pieces }) {

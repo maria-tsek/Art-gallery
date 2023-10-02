@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import ArtPiecePreview from "../ArtPiecePreview";
+import ArtPiecePreview from "../ArtPiecePreview/ArtPiecePreview";
 
 const ArtPiecesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  margin-top: 10px;
+  margin: 0 0 100px 0;
 `;
 
-export default function ArtPieces({ pieces }) {
+export default function ArtPieces({ pieces, onToggleFavorite }) {
   return (
     <ArtPiecesWrapper>
       {pieces.map((piece) => (
@@ -19,6 +19,8 @@ export default function ArtPieces({ pieces }) {
           artist={piece.artist}
           slug={piece.slug}
           imageDimensions={piece.dimensions}
+          onToggleFavorite={onToggleFavorite}
+          isFavorite={piece.isFavorite}
         />
       ))}
     </ArtPiecesWrapper>
