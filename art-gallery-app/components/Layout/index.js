@@ -12,6 +12,7 @@ const Header = styled.header`
   padding: 25px;
   text-align: center;
   font-size: 2rem;
+  
 `;
 
 const Main = styled.main`
