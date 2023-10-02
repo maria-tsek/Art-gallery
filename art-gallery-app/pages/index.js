@@ -2,7 +2,7 @@ import ArtPieces from "../components/ArtPieces";
 import Spotlight from "../components/Spotlight";
 // import { useRouter } from "next/router";
 
-export default function SpotlightPage({pieces}) {
+export default function SpotlightPage({ pieces }) {
   // const router = useRouter();
 
   const randomIndex = Math.floor(Math.random() * pieces.length);
