@@ -15,7 +15,7 @@ export default function SpotlightPage({ pieces }) {
 
   return (
     <>
-      <h1>Gallery</h1>
+      
       <Spotlight pieces={pieces} randomPiece={randomPiece} />
     </>
   );
