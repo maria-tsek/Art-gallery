@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ArtPiecePreview from "./ArtPiecePreview";
 
 const SpotlightWrapper = styled.div`
   background-color: white;
@@ -12,6 +11,8 @@ const SpotlightHeading = styled.h2`
   font-size: 24px;
   margin-bottom: 20px;
 `;
+import ArtPiecePreview from "../ArtPieceRreview";
+// import ArtPieces from "../ArtPieces";
 
 export default function Spotlight({ randomPiece }) {
   return (

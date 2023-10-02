@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ArtPiecePreview from "./ArtPiecePreview";
+import ArtPiecePreview from "../ArtPieceRreview";
 
 const ArtPiecesWrapper = styled.div`
   display: flex;

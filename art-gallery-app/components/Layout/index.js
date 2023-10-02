@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Navigation from "./Navigation";
+import Navigation from "../Navigation";
 
 const LayoutWrapper = styled.div`
   font-family: Arial, sans-serif;
