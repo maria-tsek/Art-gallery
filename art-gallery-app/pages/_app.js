@@ -1,6 +1,5 @@
 import Layout from "@/components/Layout/Layout";
 import GlobalStyle from "../styles";
-import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 // const fetcher = (...args) => fetch(...args).then(res => res.json())
@@ -18,26 +17,37 @@ const fetcher = async (url) => {
   return res.json();
 };
 export default function App({ Component, pageProps }) {
-  const { data: pieces, error, isLoading } = useSWR(URL, fetcher);
-  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  const { data: pieces, error, isLoading, mutate } = useSWR(URL, fetcher);
+  // const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  // function handleToggleFavorite(slug) {
+  //   setArtPiecesInfo((artPiecesInfo) => {
+  //     const info = artPiecesInfo.find((info) => info.slug === slug);
 
-  useEffect(() => {
-    if (pieces) setArtPiecesInfo(pieces);
-  }, [pieces]);
+  //     if (info) {
+  //       console.log("info", info);
+  //       return artPiecesInfo.map((info) =>
+  //         info.slug === slug ? { ...info, isFavorite: !info.isFavorite } : info
+  //       );
+  //     }
+  //     return [...artPiecesInfo, { slug, isFavorite: true }];
+  //   });
+  // }
 
   function handleToggleFavorite(slug) {
-    const artPiece = artPiecesInfo.find((piece) => piece.slug === slug);
+    mutate((pieces) => {
+      const clickedPiece = pieces.find((piece) => piece.slug === slug);
 
-    if (artPiece) {
-      const updatedArtPieces = artPiecesInfo.map((piece) =>
-        piece.slug === slug
-          ? { ...piece, isFavorite: !piece.isFavorite ?? false }
-          : piece
-      );
-      setArtPiecesInfo(updatedArtPieces);
-    }
+      if (clickedPiece) {
+        return pieces.map((piece) =>
+          piece.slug === slug
+            ? { ...piece, isFavorite: !piece.isFavorite }
+            : piece
+        );
+      }
+      return [...pieces, { slug, isFavorite: true }];
+    }, false);
   }
-  if (!artPiecesInfo) return;
+
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
@@ -47,7 +57,7 @@ export default function App({ Component, pageProps }) {
       <Layout>
         <Component
           {...pageProps}
-          pieces={artPiecesInfo}
+          pieces={pieces}
           onToggleFavorite={handleToggleFavorite}
         />
       </Layout>

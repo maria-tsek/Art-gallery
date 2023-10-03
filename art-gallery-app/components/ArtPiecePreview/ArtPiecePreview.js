@@ -51,18 +51,19 @@ export default function ArtPiecePreview({
 }) {
   return (
     <ArtPieceWrapper>
-      <ArtImage
-        style={{ width: "80%", height: "auto" }}
-        // width={imageDimensions.width}
-        // height={imageDimensions.height}
-        width={240}
-        height={240}
-        src={imageSource}
-        alt={`image of ${name}`}
-      />
-      <Title>{name}</Title>
-      <Artist>{artist}</Artist>
-      <Link href={`/art-pieces/${slug}`}></Link>
+      <Link href={`/art-pieces/${slug}`}>
+        <ArtImage
+          style={{ width: "80%", height: "auto" }}
+          // width={imageDimensions.width}
+          // height={imageDimensions.height}
+          width={240}
+          height={240}
+          src={imageSource}
+          alt={`image of ${name}`}
+        />
+        <Title>{name}</Title>
+        <Artist>{artist}</Artist>
+      </Link>
       <FavoriteButton
         slug={slug}
         isFavorite={isFavorite}
