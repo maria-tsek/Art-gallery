@@ -5,7 +5,9 @@ import styled from "styled-components";
 const StyledButton = styled.button`
   background: white;
   border: none;
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default function FavoriteButton({ slug, isFavorite, onToggleFavorite }) {

@@ -1,8 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
+import CommentForm from "../CommentForm/CommentForm";
+import Comments from "../Comments/Comments";
+import { useState } from "react";
+import { uid } from "uid";
 
-export default function ArtPieceDetails({
+export default function ArtPieceDetailsPage({
   imageSource,
   name,
   artist,
@@ -11,6 +15,22 @@ export default function ArtPieceDetails({
   artPiecesInfo,
   onToggleFavorite,
 }) {
+  const [comments, setComments] = useState([]);
+
+  function handleAddComment(newComment) {
+    const date = new Date().toLocaleDateString("en-gb", {
+      dateStyle: "medium",
+    });
+    const time = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    setComments([...comments, { id: uid(), time, date, ...newComment }]);
+  }
+
+  console.log("comments", comments);
+
   return (
     <>
       <Link href={`/art-pieces`}>⬅ Back</Link>
@@ -30,6 +50,8 @@ export default function ArtPieceDetails({
           onToggleFavorite={onToggleFavorite}
         />
       </div>
+      <CommentForm onAddComment={handleAddComment} />
+      <Comments comments={comments} />
     </>
   );
 }

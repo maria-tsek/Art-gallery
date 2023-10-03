@@ -33,6 +33,7 @@ export default function App({ Component, pageProps }) {
   //   });
   // }
 
+
   function handleToggleFavorite(slug) {
     mutate((pieces) => {
       const clickedPiece = pieces.find((piece) => piece.slug === slug);
@@ -47,6 +48,7 @@ export default function App({ Component, pageProps }) {
       return [...pieces, { slug, isFavorite: true }];
     }, false);
   }
+
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
