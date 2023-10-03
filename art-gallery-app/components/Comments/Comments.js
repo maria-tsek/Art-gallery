@@ -1,6 +1,11 @@
+import styled from "styled-components";
+
+const StyledList = styled.ul`
+list-style-type: "✍️ "
+`
 export default function Comments({ comments }) {
   return (
-    <ul>
+    <StyledList>
       {comments.map((comment, index) => (
         <li key={index}>
           <p>{comment.text}</p>
@@ -9,6 +14,6 @@ export default function Comments({ comments }) {
           </p>
         </li>
       ))}
-    </ul>
+    </StyledList>
   );
 }

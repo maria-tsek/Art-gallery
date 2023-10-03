@@ -5,8 +5,9 @@ import CommentForm from "../CommentForm/CommentForm";
 import Comments from "../Comments/Comments";
 import { useState } from "react";
 import { uid } from "uid";
+import Colors from "../Colors/colors";
 
-export default function ArtPieceDetailsPage({
+export default function ArtPieceDetails({
   imageSource,
   name,
   artist,
@@ -14,6 +15,7 @@ export default function ArtPieceDetailsPage({
   genre,
   artPiecesInfo,
   onToggleFavorite,
+  colors
 }) {
   const [comments, setComments] = useState([]);
 
@@ -30,6 +32,7 @@ export default function ArtPieceDetailsPage({
   }
 
   console.log("comments", comments);
+  console.log("colors", colors);
 
   return (
     <>
@@ -50,6 +53,7 @@ export default function ArtPieceDetailsPage({
           onToggleFavorite={onToggleFavorite}
         />
       </div>
+      <Colors colors={colors}/>
       <CommentForm onAddComment={handleAddComment} />
       <Comments comments={comments} />
     </>
