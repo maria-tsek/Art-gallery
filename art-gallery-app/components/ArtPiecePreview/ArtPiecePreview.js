@@ -47,7 +47,6 @@ export default function ArtPiecePreview({
   slug,
   isFavorite,
   onToggleFavorite,
-  imageDimensions,
 }) {
   return (
     <ArtPieceWrapper>
