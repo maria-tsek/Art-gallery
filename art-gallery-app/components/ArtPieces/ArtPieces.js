@@ -9,6 +9,8 @@ const ArtPiecesWrapper = styled.div`
 `;
 
 export default function ArtPieces({ pieces, onToggleFavorite }) {
+  // let favoriteSlugs = artPiecesInfo.map((piece) => piece.slug);
+
   return (
     <ArtPiecesWrapper>
       {pieces.map((piece) => (

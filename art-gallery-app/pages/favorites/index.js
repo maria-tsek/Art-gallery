@@ -1,11 +1,17 @@
 import ArtPieces from "@/components/ArtPieces/ArtPieces";
 
 export default function FavoritePage({ pieces, onToggleFavorite }) {
-  const favoritePieces = pieces.filter((piece) => piece.isFavorite);
+  let filteredFavorite = pieces.filter((piece) => piece.isFavorite);
+
+  console.log("filterFavorite", filteredFavorite);
+
   return (
     <>
       <h1>Favorite Art Pieces</h1>
-      <ArtPieces pieces={favoritePieces} onToggleFavorite={onToggleFavorite} />
+      <ArtPieces
+        pieces={filteredFavorite}
+        onToggleFavorite={onToggleFavorite}
+      />
     </>
   );
 }

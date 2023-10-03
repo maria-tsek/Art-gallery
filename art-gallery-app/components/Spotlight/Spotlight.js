@@ -16,11 +16,7 @@ const SpotlightHeading = styled.h2`
 
 // import ArtPieces from "../ArtPieces";
 
-export default function Spotlight({
-  randomPiece,
-  artPiecesInfo,
-  onToggleFavorite,
-}) {
+export default function Spotlight({ randomPiece, onToggleFavorite }) {
   return (
     <SpotlightWrapper>
       <SpotlightHeading>Spotlight Page</SpotlightHeading>
@@ -28,9 +24,9 @@ export default function Spotlight({
         imageSource={randomPiece.imageSource}
         name={randomPiece.name}
         artist={randomPiece.artist}
-        artPiecesInfo={artPiecesInfo}
-        onToggleFavorite={onToggleFavorite}
         slug={randomPiece.slug}
+        onToggleFavorite={onToggleFavorite}
+        isFavorite={randomPiece.isFavorite}
       />
     </SpotlightWrapper>
   );
