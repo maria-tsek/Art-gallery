@@ -16,6 +16,7 @@ const Header = styled.header`
 
 const Main = styled.main`
   padding: 20px;
+  margin-bottom: 70px;
 `;
 
 export default function Layout({ children }) {
