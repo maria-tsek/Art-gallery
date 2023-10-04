@@ -8,7 +8,7 @@ const ArtPiecesWrapper = styled.div`
   margin: 0 0 100px 0;
 `;
 
-export default function ArtPieces({ pieces, onToggleFavorite }) {
+export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
   // let favoriteSlugs = artPiecesInfo.map((piece) => piece.slug);
 
   return (
@@ -22,7 +22,7 @@ export default function ArtPieces({ pieces, onToggleFavorite }) {
           slug={piece.slug}
           imageDimensions={piece.dimensions}
           onToggleFavorite={onToggleFavorite}
-          isFavorite={piece.isFavorite}
+          isFavorite={artPiecesInfo.find((artPiece) => artPiece.slug === piece.slug)?.isFavorite}
         />
       ))}
     </ArtPiecesWrapper>

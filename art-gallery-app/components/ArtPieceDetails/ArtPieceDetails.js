@@ -8,6 +8,7 @@ import { uid } from "uid";
 import Colors from "../Colors/colors";
 
 export default function ArtPieceDetails({
+  slug,
   imageSource,
   name,
   artist,
@@ -15,7 +16,8 @@ export default function ArtPieceDetails({
   genre,
   artPiecesInfo,
   onToggleFavorite,
-  colors
+  colors,
+  
 }) {
   const [comments, setComments] = useState([]);
 
@@ -51,6 +53,8 @@ export default function ArtPieceDetails({
         <FavoriteButton
           artPiecesInfo={artPiecesInfo}
           onToggleFavorite={onToggleFavorite}
+          slug={slug}
+          isFavorite={artPiecesInfo.find((artPiece) => artPiece.slug === slug)?.isFavorite}
         />
       </div>
       <Colors colors={colors}/>

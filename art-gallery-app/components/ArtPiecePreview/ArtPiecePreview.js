@@ -66,6 +66,7 @@ export default function ArtPiecePreview({
       <FavoriteButton
         slug={slug}
         isFavorite={isFavorite}
+      
         onToggleFavorite={onToggleFavorite}
       />
     </ArtPieceWrapper>

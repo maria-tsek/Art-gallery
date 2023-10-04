@@ -1,7 +1,9 @@
 import Layout from "@/components/Layout/Layout";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
-import { useImmerLocalStorageState } from "../lib/hook/useImmerLocalStorageState.js";
+import { useState } from "react";
+
+// import { useImmerLocalStorageState } from "../lib/hook/useImmerLocalStorageState.js";
 
 // const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -19,35 +21,66 @@ const fetcher = async (url) => {
 };
 export default function App({ Component, pageProps }) {
   const { data: pieces, error, isLoading, mutate } = useSWR(URL, fetcher);
-  // const [artPiecesInfo, setArtPiecesInfo] = useState([]);
-  // function handleToggleFavorite(slug) {
-  //   setArtPiecesInfo((artPiecesInfo) => {
-  //     const info = artPiecesInfo.find((info) => info.slug === slug);
 
-  //     if (info) {
-  //       console.log("info", info);
-  //       return artPiecesInfo.map((info) =>
-  //         info.slug === slug ? { ...info, isFavorite: !info.isFavorite } : info
-  //       );
-  //     }
-  //     return [...artPiecesInfo, { slug, isFavorite: true }];
-  //   });
+  // , {
+  //   onSuccess: (pieces) => {
+  //     // Add the data to the localStorageProvider map
+  //     localStorageProvider().set("pieces", pieces);
+  //   },
+  // });
+
+  // function localStorageProvider() {
+  //   if (typeof window !== "undefined") {
+  //     const map = new Map(JSON.parse(localStorage.getItem("pieces") || "[]"));
+
+  //     window.addEventListener("beforeunload", () => {
+  //       const appCache = JSON.stringify(Array.from(map.entries()));
+  //       localStorage.setItem("pieces", appCache);
+  //     });
+
+  //     return map;
+  //   }
   // }
+  // localStorageProvider(pieces);
 
+  // DATA is all the pieces
+  // A second state, an array, to hold only the slug from the piece you liked, and save it in the local storage
+  // In the favorites page filter the DATA with the favorites array
+
+  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
   function handleToggleFavorite(slug) {
-    mutate((pieces) => {
-      const clickedPiece = pieces.find((piece) => piece.slug === slug);
+    setArtPiecesInfo((draft) => {
+      const foundPiece = draft.find((piece) => piece.slug === slug);
 
-      if (clickedPiece) {
-        return pieces.map((piece) =>
+      if (foundPiece) {
+        return draft.map((piece) =>
           piece.slug === slug
             ? { ...piece, isFavorite: !piece.isFavorite }
             : piece
         );
       }
-      return [...pieces, { slug, isFavorite: true }];
-    }, false);
+      return [...draft, { slug, isFavorite: true }];
+    });
   }
+
+  console.log("pieces", pieces);
+  console.log("artPiecesInfo", artPiecesInfo);
+
+  // function handleToggleFavorite(slug) {
+  //   mutate((pieces) => {
+  //     const clickedPiece = pieces.find((piece) => piece.slug === slug);
+
+  //     if (clickedPiece) {
+  //       return pieces.map((piece) =>
+  //         piece.slug === slug
+  //           ? { ...piece, isFavorite: !piece.isFavorite }
+  //           : piece
+  //       );
+  //     }
+  //     return [...pieces, { slug, isFavorite: true }];
+  //   }, false);
+  //   localStorageProvider(pieces);
+  // }
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
@@ -59,6 +92,7 @@ export default function App({ Component, pageProps }) {
         <Component
           {...pageProps}
           pieces={pieces}
+          artPiecesInfo={artPiecesInfo}
           onToggleFavorite={handleToggleFavorite}
         />
       </Layout>
