@@ -6,7 +6,7 @@ list-style-type: "✍️ "
 export default function Comments({ comments }) {
   return (
     <StyledList>
-      {comments.map((comment, index) => (
+      {comments?.map((comment, index) => (
         <li key={index}>
           <p>{comment.text}</p>
           <p>

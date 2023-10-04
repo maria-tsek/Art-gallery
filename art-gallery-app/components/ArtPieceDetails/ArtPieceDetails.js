@@ -3,11 +3,12 @@ import Link from "next/link";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import CommentForm from "../CommentForm/CommentForm";
 import Comments from "../Comments/Comments";
-import { useState } from "react";
 import { uid } from "uid";
 import Colors from "../Colors/colors";
+import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState";
 
 export default function ArtPieceDetails({
+  slug,
   imageSource,
   name,
   artist,
@@ -15,9 +16,13 @@ export default function ArtPieceDetails({
   genre,
   artPiecesInfo,
   onToggleFavorite,
-  colors
+  colors,
 }) {
-  const [comments, setComments] = useState([]);
+
+
+  const [comments, setComments] = useImmerLocalStorageState("comment", {
+    defaultValue: [],
+  });
 
   function handleAddComment(newComment) {
     const date = new Date().toLocaleDateString("en-gb", {
@@ -51,9 +56,13 @@ export default function ArtPieceDetails({
         <FavoriteButton
           artPiecesInfo={artPiecesInfo}
           onToggleFavorite={onToggleFavorite}
+          slug={slug}
+          isFavorite={
+            artPiecesInfo.find((artPiece) => artPiece.slug === slug)?.isFavorite
+          }
         />
       </div>
-      <Colors colors={colors}/>
+      <Colors colors={colors} />
       <CommentForm onAddComment={handleAddComment} />
       <Comments comments={comments} />
     </>
