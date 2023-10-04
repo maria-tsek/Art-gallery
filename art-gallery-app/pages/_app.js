@@ -1,11 +1,9 @@
 import Layout from "@/components/Layout/Layout";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
-import { useState } from "react";
+// import { useState } from "react";
 
-// import { useImmerLocalStorageState } from "../lib/hook/useImmerLocalStorageState.js";
-
-// const fetcher = (...args) => fetch(...args).then(res => res.json())
+import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState";
 
 const URL = "https://example-apis.vercel.app/api/art";
 const fetcher = async (url) => {
@@ -20,7 +18,7 @@ const fetcher = async (url) => {
   return res.json();
 };
 export default function App({ Component, pageProps }) {
-  const { data: pieces, error, isLoading, mutate } = useSWR(URL, fetcher);
+  const { data: pieces, error, isLoading } = useSWR(URL, fetcher);
 
   // , {
   //   onSuccess: (pieces) => {
@@ -47,7 +45,10 @@ export default function App({ Component, pageProps }) {
   // A second state, an array, to hold only the slug from the piece you liked, and save it in the local storage
   // In the favorites page filter the DATA with the favorites array
 
-  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
+    "art-pieces-info",
+    { defaultValue: [] }
+  );
   function handleToggleFavorite(slug) {
     setArtPiecesInfo((draft) => {
       const foundPiece = draft.find((piece) => piece.slug === slug);
