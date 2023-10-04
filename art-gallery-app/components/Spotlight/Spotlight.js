@@ -4,7 +4,10 @@ import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import ArtPiecePreview from "../ArtPiecePreview/ArtPiecePreview";
 
 const SpotlightWrapper = styled.div`
-  background-color: white;
+display: flex; 
+flex-direction: column;
+justify-content: center;
+align-items: center;
   padding: 20px;
   text-align: center;
 `;

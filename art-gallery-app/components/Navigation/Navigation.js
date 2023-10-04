@@ -7,7 +7,7 @@ const NavigationWrapper = styled.nav`
   left: 0;
   right: 0;
 
-  background-color: #0ABAB5;
+  background-color: var(--color-dark-blue) ;
   color: white;
   ul {
     list-style: none;

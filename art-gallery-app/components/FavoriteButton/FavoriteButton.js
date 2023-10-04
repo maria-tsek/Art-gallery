@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  background: white;
+  background: var(--color-cool-grey);
   border: none;
   &:hover {
     cursor: pointer;

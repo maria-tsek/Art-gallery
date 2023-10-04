@@ -1,13 +1,8 @@
 import styled from "styled-components";
 import Navigation from "../Navigation/Navigation";
 
-const LayoutWrapper = styled.div`
-  font-family: Arial, sans-serif;
-`;
-
 const Header = styled.header`
-  // background-color: grey;
-  background-color: #0abab5;
+  background-color: var(--color-dark-blue);
   color: white;
   padding: 25px;
   text-align: center;
@@ -15,16 +10,18 @@ const Header = styled.header`
 `;
 
 const Main = styled.main`
-  padding: 20px;
-  margin-bottom: 70px;
+  padding-left: 20px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 100px;
+  background-color: var(--color-cool-grey);
 `;
 
 export default function Layout({ children }) {
   return (
-    <LayoutWrapper>
+    <>
       <Header>Art Gallery</Header>
       <Main>{children}</Main>
       <Navigation />
-    </LayoutWrapper>
+    </>
   );
 }

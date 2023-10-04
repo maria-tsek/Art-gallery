@@ -6,7 +6,17 @@ import Comments from "../Comments/Comments";
 import { uid } from "uid";
 import Colors from "../Colors/colors";
 import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState";
+import styled from "styled-components";
 
+const Wrapper = styled.div`
+
+display: flex; 
+flex-direction: column;
+justify-content: center;
+align-items: center;
+  padding: 20px;
+  text-align: center;
+`;
 export default function ArtPieceDetails({
   slug,
   imageSource,
@@ -18,8 +28,6 @@ export default function ArtPieceDetails({
   onToggleFavorite,
   colors,
 }) {
-
-
   const [comments, setComments] = useImmerLocalStorageState("comment", {
     defaultValue: [],
   });
@@ -40,9 +48,10 @@ export default function ArtPieceDetails({
   console.log("colors", colors);
 
   return (
-    <>
+
+    <Wrapper>
       <Link href={`/art-pieces`}>⬅ Back</Link>
-      <div>
+      <section>
         <Image
           src={imageSource}
           alt={`image of ${name}`}
@@ -61,10 +70,11 @@ export default function ArtPieceDetails({
             artPiecesInfo.find((artPiece) => artPiece.slug === slug)?.isFavorite
           }
         />
-      </div>
+      </section>
       <Colors colors={colors} />
       <CommentForm onAddComment={handleAddComment} />
       <Comments comments={comments} />
-    </>
+    </Wrapper>
+  
   );
 }
