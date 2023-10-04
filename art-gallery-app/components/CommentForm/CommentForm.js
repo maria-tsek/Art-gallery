@@ -7,12 +7,13 @@ export default function CommentForm({ onAddComment }) {
     margin: 10px;
     padding: 20px;
     gap: 10px;
-    background: #0abab5;
+    background: var(--color-blue);
     width: 50%;
   `;
   const Heading = styled.h2``;
   const Label = styled.label``;
-  const Input = styled.input``;
+  const Input = styled.input`
+  border: 1px, solid, var(--color-red)`;
   const Button = styled.button`
     margin: 10px;
     width: fit-content;

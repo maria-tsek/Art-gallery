@@ -4,8 +4,12 @@ import ArtPiecePreview from "../ArtPiecePreview/ArtPiecePreview";
 const ArtPiecesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 20px;
   margin: 0 0 100px 0;
+  background-color: #a8dadc;
+  padding: 30px;
 `;
 
 export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
@@ -22,7 +26,10 @@ export default function ArtPieces({ pieces, artPiecesInfo, onToggleFavorite }) {
           slug={piece.slug}
           imageDimensions={piece.dimensions}
           onToggleFavorite={onToggleFavorite}
-          isFavorite={artPiecesInfo.find((artPiece) => artPiece.slug === piece.slug)?.isFavorite}
+          isFavorite={
+            artPiecesInfo.find((artPiece) => artPiece.slug === piece.slug)
+              ?.isFavorite
+          }
         />
       ))}
     </ArtPiecesWrapper>

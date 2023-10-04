@@ -7,8 +7,21 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
-    margin: 0;
-    font-family: system-ui;
+  :root {
+    --color-red: #E63946;
+    --color-grey-green: #F1FAEE;
+    --color-cool-grey: #A8DADC;
+    --color-blue: #457B9D;
+    --color-dark-blue: #1D3557;
+    
   }
+
+  body {
+    margin: 0 auto;
+    font-family: system-ui;
+    background-color: var(--color-cool-grey)
+
+  }
+
 `;
+
