@@ -1,8 +1,6 @@
 import Layout from "@/components/Layout/Layout";
 import GlobalStyle from "../styles";
 import useSWR from "swr";
-// import { useState } from "react";
-
 import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState";
 
 const URL = "https://example-apis.vercel.app/api/art";
@@ -20,9 +18,10 @@ const fetcher = async (url) => {
 export default function App({ Component, pageProps }) {
   const { data: pieces, error, isLoading } = useSWR(URL, fetcher);
 
-  // , {
+  // Option 2: using only one state (pieces), and mutating it on handleToggleFavorite(button click)
+  // In case with only one state, tried SWR localStorageProvider() hook, but didn't work!
+  // const { data: pieces, error, isLoading } = useSWR(URL, fetcher), {
   //   onSuccess: (pieces) => {
-  //     // Add the data to the localStorageProvider map
   //     localStorageProvider().set("pieces", pieces);
   //   },
   // });
@@ -41,32 +40,6 @@ export default function App({ Component, pageProps }) {
   // }
   // localStorageProvider(pieces);
 
-  // DATA is all the pieces
-  // A second state, an array, to hold only the slug from the piece you liked, and save it in the local storage
-  // In the favorites page filter the DATA with the favorites array
-
-  const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
-    "art-pieces-info",
-    { defaultValue: [] }
-  );
-  function handleToggleFavorite(slug) {
-    setArtPiecesInfo((draft) => {
-      const foundPiece = draft.find((piece) => piece.slug === slug);
-
-      if (foundPiece) {
-        return draft.map((piece) =>
-          piece.slug === slug
-            ? { ...piece, isFavorite: !piece.isFavorite }
-            : piece
-        );
-      }
-      return [...draft, { slug, isFavorite: true }];
-    });
-  }
-
-  console.log("pieces", pieces);
-  console.log("artPiecesInfo", artPiecesInfo);
-
   // function handleToggleFavorite(slug) {
   //   mutate((pieces) => {
   //     const clickedPiece = pieces.find((piece) => piece.slug === slug);
@@ -82,6 +55,34 @@ export default function App({ Component, pageProps }) {
   //   }, false);
   //   localStorageProvider(pieces);
   // }
+
+  // Option 1: Implementing 2 states:
+  // DATA is all the pieces
+  // A second state, an array, to hold only the slug from the piece you liked, and save it in the local storage
+  // In the favorites page filter the DATA with the favorites array
+
+  const [artPiecesInfo, setArtPiecesInfo] = useImmerLocalStorageState(
+    "art-pieces-info",
+    { defaultValue: [] }
+  );
+
+  function handleToggleFavorite(slug) {
+    const artPiece = artPiecesInfo.find((piece) => piece.slug === slug);
+    if (artPiece) {
+      setArtPiecesInfo(
+        artPiecesInfo.map((pieceInfo) =>
+          pieceInfo.slug === slug
+            ? { slug, isFavorite: !pieceInfo.isFavorite }
+            : pieceInfo
+        )
+      );
+    } else {
+      setArtPiecesInfo([...artPiecesInfo, { slug, isFavorite: true }]);
+    }
+  }
+
+  console.log("pieces", pieces);
+  console.log("artPiecesInfo", artPiecesInfo);
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
