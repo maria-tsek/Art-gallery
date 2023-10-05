@@ -9,14 +9,43 @@ import { useImmerLocalStorageState } from "@/lib/hook/useImmerLocalStorageState"
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-
-display: flex; 
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   text-align: center;
 `;
+
+const BackLink = styled(Link)`
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: var(--color-dark-blue);
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const ArtInfoSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+  & > h1 {
+    font-size: 28px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  & > p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+`;
+
 export default function ArtPieceDetails({
   slug,
   imageSource,
@@ -44,14 +73,10 @@ export default function ArtPieceDetails({
     setComments([...comments, { id: uid(), time, date, ...newComment }]);
   }
 
-  console.log("comments", comments);
-  console.log("colors", colors);
-
   return (
-
     <Wrapper>
-      <Link href={`/art-pieces`}>⬅ Back</Link>
-      <section>
+      <BackLink href={`/art-pieces`}>⬅ Back</BackLink>
+      <ArtInfoSection>
         <Image
           src={imageSource}
           alt={`image of ${name}`}
@@ -70,11 +95,10 @@ export default function ArtPieceDetails({
             artPiecesInfo.find((artPiece) => artPiece.slug === slug)?.isFavorite
           }
         />
-      </section>
+      </ArtInfoSection>
       <Colors colors={colors} />
       <CommentForm onAddComment={handleAddComment} />
       <Comments comments={comments} />
     </Wrapper>
-  
   );
 }

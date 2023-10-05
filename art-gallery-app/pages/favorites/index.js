@@ -1,4 +1,19 @@
 import ArtPieces from "@/components/ArtPieces/ArtPieces";
+import styled from "styled-components";
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+`;
+
+const Heading = styled.h1`
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+`;
 
 export default function FavoritePage({
   pieces,
@@ -11,16 +26,14 @@ export default function FavoritePage({
     );
   });
 
-  console.log("filterFavorite", filteredFavorite);
-
   return (
-    <>
-      <h1>Favorite Art Pieces</h1>
+    <PageWrapper>
+      <Heading>Favorite Art Pieces</Heading>
       <ArtPieces
         pieces={filteredFavorite}
         artPiecesInfo={artPiecesInfo}
         onToggleFavorite={onToggleFavorite}
       />
-    </>
+    </PageWrapper>
   );
 }
